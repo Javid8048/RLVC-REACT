@@ -96,9 +96,17 @@ export const Join = () => {
     main();
   }
 
-  let [showPage1, setShowPage] = useState(false);
+  let [showPage1, setShowPage1] = useState(false);
   const makeACall = () => {
-    setShowPage(true);
+    setShowPage1(true);
+  }
+  let [showPage2, setShowPage2] = useState(false);
+  const joinACall = () => {
+    setShowPage2(true);
+  }
+  const backToHome = () => {
+    setShowPage1(false);
+    setShowPage2(false);
   }
 
   return (
@@ -106,7 +114,7 @@ export const Join = () => {
       <div id='joinContainer'>
         <div id='inputContainer'>
 
-        <div className='first-page'>
+        { !showPage1 && !showPage2 && <div className='home-page-layout'>
          <Typography variant="h5" gutterBottom>
             <i> Welcome to </i><br />
             <span id='brand'>RLVC</span>
@@ -116,13 +124,28 @@ export const Join = () => {
           <br />
 
           <Button id='createCallBtn' variant='contained' onClick={makeACall} disabled={callID.length > 0}>Make a call</Button>
-          {showPage1 && <h1>Hello javid</h1>}
-          <TextField id='name' label='Display Name' variant='standard' value={name} onChange={(e) => setName(e.target.value)}/>
-          <Button id='createCallBtn' variant='contained' onClick={handleCreateCall} disabled={callID.length > 0}>Create Call</Button>
+          <Button id='createCallBtn' variant='contained' onClick={joinACall} disabled={callID.length > 0}>Join a call</Button>
 
-          <TextField id='callID' label='Call ID'  variant='standard' value={callID} onChange={(e) => setCallID(e.target.value)}/>
-          <Button id='joinCallBtn' variant='contained' color='secondary' onClick={handleJoinCall} disabled={callID.length === 0}>Join Call</Button>
-         </div>
+          <h5 onClick={backToHome}>Back</h5>
+         </div>}
+
+         { showPage1 && <div className="home-page-layout">
+            <Typography variant="h5" gutterBottom>
+              <span id='brand'>Make a call</span>
+            </Typography>
+            <TextField id='name' label='Display Name' variant='standard' value={name} onChange={(e) => setName(e.target.value)}/>
+            <Button id='createCallBtn' variant='contained' onClick={handleCreateCall} disabled={callID.length > 0}>Create Call</Button>
+          </div> }
+
+         { showPage2 && <div className="home-page-layout">
+            <Typography variant="h5" gutterBottom>
+              <span id='brand'>Join a call</span>
+            </Typography>
+            <TextField id='name' label='Display Name' variant='standard' value={name} onChange={(e) => setName(e.target.value)}/>
+            <TextField id='callID' label='Call ID'  variant='standard' value={callID} onChange={(e) => setCallID(e.target.value)}/>
+            <Button id='joinCallBtn' variant='contained' color='secondary' onClick={handleJoinCall} disabled={callID.length === 0}>Join Call</Button>
+          </div> }
+
         </div>
       </div>
 
