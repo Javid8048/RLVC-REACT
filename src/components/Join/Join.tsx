@@ -21,7 +21,6 @@ const getLogoPath = (): string => {
 }
 
 export const Join = () => {
-  const logo = useRef<string>(getLogoPath());
   const [name, setName] = useState<string>('');
   const [callID, setCallID] = useState<string>('');
   const { openAlert, setOpenAlert, alertMessage, alertType, fireAlert} = useAlert();
@@ -97,6 +96,11 @@ export const Join = () => {
     main();
   }
 
+  let [showPage1, setShowPage] = useState(false);
+  const makeACall = () => {
+    setShowPage(true);
+  }
+
   return (
     <>
       <div id='joinContainer'>
@@ -111,6 +115,8 @@ export const Join = () => {
           </Typography>
           <br />
 
+          <Button id='createCallBtn' variant='contained' onClick={makeACall} disabled={callID.length > 0}>Make a call</Button>
+          {showPage1 && <h1>Hello javid</h1>}
           <TextField id='name' label='Display Name' variant='standard' value={name} onChange={(e) => setName(e.target.value)}/>
           <Button id='createCallBtn' variant='contained' onClick={handleCreateCall} disabled={callID.length > 0}>Create Call</Button>
 
