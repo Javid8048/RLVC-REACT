@@ -37,15 +37,27 @@
 
 #brand {
     font-family: 'Dancing Script', cursive;
-    font-size: 80px;
+    font-size: 3rem;
     margin-bottom: 30px;
     color: #008000;
+    font-weight: bolder;
+}
+.subBrand {
+    font-size: 1rem;
+    font-weight: bolder;
+}
+.backBtn {
+    font-size: 1rem;
+    font-weight: bolder;
+    color: var(--themeGlobal);
+    text-decoration: underline;
 }
 
 #createCallBtn, #joinCallBtn {
     background-color: var(--themeGlobal);
     font-weight: bold;
     color: white;
+    margin: .875rem 0;
 }
 button:disabled {
     background-color: var(--themeGlobal) !important;
@@ -68,4 +80,9 @@ hr {
     background: white;
     display: grid;
     padding: 2rem;
+}
+
+
+.inputField {
+    margin-bottom: .875rem;
 }

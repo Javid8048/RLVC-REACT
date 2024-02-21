@@ -13,13 +13,6 @@ import { config } from '../../shared';
 import { v4 as uuidv4 } from 'uuid';
 import Typography from '@material-ui/core/Typography';
 
-const { logoCount } = config;
-
-const getLogoPath = (): string => {
-  const index = Math.floor(Math.random() * (logoCount)) + 1;
-  return `${process.env.PUBLIC_URL}/logo_${index}.jpg`;
-}
-
 export const Join = () => {
   const [name, setName] = useState<string>('');
   const [callID, setCallID] = useState<string>('');
@@ -54,6 +47,8 @@ export const Join = () => {
     }
     history.push(location);
   }
+
+  
   const handleJoinCall = () => {
     const main = async () => {
       if (name.length === 0) {
@@ -116,36 +111,40 @@ export const Join = () => {
 
         { !showPage1 && !showPage2 && <div className='home-page-layout'>
          <Typography variant="h5" gutterBottom>
-            <i> Welcome to </i><br />
-            <span id='brand'>RLVC</span>
+            <span id='brand'> Welcome to RLVC</span>
             <br />
-            <i> What you want to do ? </i>
+            <i className='subBrand'> What you want to do ? </i>
           </Typography>
-          <br />
-
+          <hr />
           <Button id='createCallBtn' variant='contained' onClick={makeACall} disabled={callID.length > 0}>Make a call</Button>
+          <hr />
           <Button id='createCallBtn' variant='contained' onClick={joinACall} disabled={callID.length > 0}>Join a call</Button>
 
-          <h5 onClick={backToHome}>Back</h5>
-         </div>}
+         </div>
+         }
 
          { showPage1 && <div className="home-page-layout">
             <Typography variant="h5" gutterBottom>
               <span id='brand'>Make a call</span>
+              <br />
+              <i className='subBrand'> Enter your name and make a call </i>
             </Typography>
-            <TextField id='name' label='Display Name' variant='standard' value={name} onChange={(e) => setName(e.target.value)}/>
+            <TextField id='name' label='Name' variant='standard' value={name} onChange={(e) => setName(e.target.value)}/>
             <Button id='createCallBtn' variant='contained' onClick={handleCreateCall} disabled={callID.length > 0}>Create Call</Button>
+            <span className="backBtn" onClick={backToHome}>Back</span>
           </div> }
 
          { showPage2 && <div className="home-page-layout">
             <Typography variant="h5" gutterBottom>
               <span id='brand'>Join a call</span>
+              <br />
+              <i className='subBrand'> Enter your name and caller id </i>
             </Typography>
-            <TextField id='name' label='Display Name' variant='standard' value={name} onChange={(e) => setName(e.target.value)}/>
+            <TextField id='name' label='Name' variant='standard' value={name} onChange={(e) => setName(e.target.value)}/>
             <TextField id='callID' label='Call ID'  variant='standard' value={callID} onChange={(e) => setCallID(e.target.value)}/>
             <Button id='joinCallBtn' variant='contained' color='secondary' onClick={handleJoinCall} disabled={callID.length === 0}>Join Call</Button>
+            <span className="backBtn" onClick={backToHome}>Back</span >
           </div> }
-
         </div>
       </div>
 
