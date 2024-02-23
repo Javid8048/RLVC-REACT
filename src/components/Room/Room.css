@@ -1,3 +1,4 @@
+
 #roomContainer {
   overflow: hidden;
   background-color: #0f1419;
@@ -25,7 +26,6 @@
 .videos {
   display: flex;
   position: relative;
-  background-color: ;
 }
 
 .videos .action {

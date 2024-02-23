@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Syne+Mono&display=swap');
 
+* {
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
 body {
   /* font-family: 'Syne Mono', monospace; */
   font-family: monospace;
